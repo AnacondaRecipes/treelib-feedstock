@@ -25,7 +25,7 @@ requirements:
 
 {% set tests_to_skip = "" %}
 # UnicodeEncodeError: 'charmap' codec can't encode characters in position 7-9: character maps to <undefined>
-{% set tests_to_skip = "test_show" %}  # [win]
+{% set tests_to_skip = "not test_show" %}  # [win]
 
 test:
   source_files:
@@ -35,7 +35,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest -v -k "not {{ tests_to_skip }}" tests
+    - pytest -v -k "{{ tests_to_skip }}" tests
   requires:
     - pip
     - pytest
