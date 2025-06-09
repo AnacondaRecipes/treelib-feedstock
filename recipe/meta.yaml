@@ -17,9 +17,15 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - six
     - python
+
+{% set tests_to_skip = "" %}
+# UnicodeEncodeError: 'charmap' codec can't encode characters in position 7-9: character maps to <undefined>
+{% set tests_to_skip = "test_show" %}  # [win]
 
 test:
   source_files:
@@ -29,7 +35,7 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest -v tests
+    - pytest -v -k "not {{ tests_to_skip }}" tests
   requires:
     - pip
     - pytest
@@ -53,3 +59,5 @@ extra:
     - shcheklein
     - efiop
     - maxhora
+  skip-lints:
+    - invalid_url
