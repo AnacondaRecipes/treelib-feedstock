@@ -23,10 +23,6 @@ requirements:
     - six
     - python
 
-{% set tests_to_skip = "" %}
-# UnicodeEncodeError: 'charmap' codec can't encode characters in position 7-9: character maps to <undefined>
-{% set tests_to_skip = "not test_show" %}  # [win]
-
 test:
   source_files:
     - tests
@@ -35,7 +31,8 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - export PYTHONIOENCODING=UTF-8
+    - set PYTHONUTF8=1  # [win]
+    - set PYTHONIOENCODING="UTF-8"  # [win]
     - pytest -v tests
   requires:
     - pip
