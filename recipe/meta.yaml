@@ -35,7 +35,8 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
-    - pytest -v -k "{{ tests_to_skip }}" tests
+    - export PYTHONIOENCODING=UTF-8
+    - pytest -v tests
   requires:
     - pip
     - pytest
