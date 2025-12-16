@@ -1,13 +1,13 @@
 {% set name = "treelib" %}
-{% set version = "1.7.1" %}
+{% set version = "1.8.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a2b57ba38290f7da6af97b41de8ff7be98e7a8c00815f95d0782241f77503952
+  url: https://github.com/caesar0301/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 5d1519b84178d0def1f3471250a8e9da8fce897fbf33a626a7f5372901a634ce
 
 build:
   number: 0
@@ -18,10 +18,11 @@ requirements:
     - python
     - pip
     - setuptools
-    - wheel
+    - poetry-core
   run:
     - six
     - python
+    - poetry-core
 
 test:
   source_files:
