@@ -11,18 +11,17 @@ source:
 
 build:
   number: 0
+  skip: true  # [py<37]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python
-    - pip
-    - setuptools
     - poetry-core
   run:
-    - six
+    - six >=1.13.0
     - python
-    - poetry-core
+
 
 test:
   source_files:
